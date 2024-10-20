@@ -55,8 +55,8 @@ function App() {
 
 				<Routes>
 					<Route path="/" element={<Home />} />
-					
-					<Route path="/dashboard/*" element={<ProtectedRoute><DashBaord /></ProtectedRoute>} />
+					{/* Nested route for dashboard */}
+					<Route path="/dashboard" element={<ProtectedRoute><DashBaord /></ProtectedRoute>} />
 
 					<Route path="/signup" element={<RedirectAuthenticatedUser><SignupPage /></RedirectAuthenticatedUser>} />
 					<Route path="/login" element={<RedirectAuthenticatedUser><LoginPage /></RedirectAuthenticatedUser>} />
