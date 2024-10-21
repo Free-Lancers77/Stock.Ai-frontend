@@ -47,25 +47,67 @@ function App() {
 
 	return (
 		<>
-			<div className='min-h-screen bg-gradient-to-br from-gray-900 to-black flex flex-col items-center justify-center relative overflow-hidden'>
+			<div className='min-h-screen flex flex-col relative'>
 				{/* Floating Shapes */}
 				<FloatingShape color="bg-white" size="w-64 h-64" top="-5%" left="10%" delay={0} />
 				<FloatingShape color="bg-gray-400" size="w-48 h-48" top="70%" left="80%" delay={5} />
 				<FloatingShape color="bg-gray-300" size="w-32 h-32" top="40%" left="-10%" delay={2} />
 
-				<Routes>
-					<Route path="/" element={<Home />} />
-					{/* Nested route for dashboard */}
-					<Route path="/dashboard" element={<ProtectedRoute><DashBaord /></ProtectedRoute>} />
+				{/* Main content area */}
+				<div className='flex-1 bg-gradient-to-br from-gray-900 to-black'>
+					<Routes>
+						<Route path="/" element={<Home />} />
+						{/* Nested route for dashboard */}
+						<Route path="/*" element={<ProtectedRoute><DashBaord /></ProtectedRoute>} />
 
-					<Route path="/signup" element={<RedirectAuthenticatedUser><SignupPage /></RedirectAuthenticatedUser>} />
-					<Route path="/login" element={<RedirectAuthenticatedUser><LoginPage /></RedirectAuthenticatedUser>} />
-					<Route path="/forget_password" element={<RedirectAuthenticatedUser><ForgotPasswordPage /></RedirectAuthenticatedUser>} />
-					<Route path='/verify_emaile' element={<EmailVerificationPage />} />
-					<Route path='/reset-password/:token' element={<RedirectAuthenticatedUser><ResetPasswordPage /></RedirectAuthenticatedUser>} />
-					{/* catch all routes */}
-					<Route path='*' element={<Navigate to='/' replace />} />
-				</Routes>
+						{/* Form Routes */}
+						<Route 
+							path="/signup" 
+							element={
+								<div className="flex items-center justify-center min-h-screen">
+									<RedirectAuthenticatedUser>
+										<SignupPage />
+									</RedirectAuthenticatedUser>
+								</div>
+							} 
+						/>
+						<Route 
+							path="/login" 
+							element={
+								<div className="flex items-center justify-center min-h-screen">
+									<RedirectAuthenticatedUser>
+										<LoginPage />
+									</RedirectAuthenticatedUser>
+								</div>
+							} 
+						/>
+						<Route 
+							path="/forget_password" 
+							element={
+								<div className="flex items-center justify-center min-h-screen">
+									<RedirectAuthenticatedUser>
+										<ForgotPasswordPage />
+									</RedirectAuthenticatedUser>
+								</div>
+							} 
+						/>
+						<Route path='/verify_emaile' element={<EmailVerificationPage />} />
+						<Route 
+							path='/reset-password/:token' 
+							element={
+								<div className="flex items-center justify-center min-h-screen">
+									<RedirectAuthenticatedUser>
+										<ResetPasswordPage />
+									</RedirectAuthenticatedUser>
+								</div>
+							} 
+						/>
+						
+						{/* catch all routes */}
+						<Route path='*' element={<Navigate to='/' replace />} />
+					</Routes>
+				</div>
+
 				<Toaster />
 			</div>
 		</>
