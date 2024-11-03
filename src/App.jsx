@@ -92,6 +92,7 @@ function App() {
 							} 
 						/>
 						<Route path='/verify_emaile' element={<EmailVerificationPage />} />
+					
 						<Route 
 							path='/reset-password/:token' 
 							element={
